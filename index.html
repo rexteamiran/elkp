@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>...</title> <!-- Title specific to the page -->
+        <!-- Add Vazirmatn Font -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    
+        <!-- Link to NEW CSS Files IN ORDER -->
+        <link rel="stylesheet" href="css/style.css">      <!-- Base, Layout, Components, Pages -->
+        <link rel="stylesheet" href="css/header.css">     <!-- Header Specific -->
+        <link rel="stylesheet" href="css/footer.css">     <!-- Footer Specific -->
+        <link rel="stylesheet" href="css/responsive.css"> <!-- All Media Queries -->
+    
+        <!-- Favicon -->
+        <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    </head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="لوگو اتحادیه لوازم خانگی پردیس">
+                    <!-- <span class="logo-text">اتحادیه لوازم خانگی پردیس</span> -->
+                 </a>
+            </div>
+
+            <!-- Desktop Navigation & Mobile Menu Trigger -->
+            <nav class="main-navigation">
+                <!-- Hamburger Button (Only visible on mobile) -->
+                <button class="menu-toggle" aria-controls="primary-menu-container" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Desktop Menu (Visible on desktop) -->
+                <ul id="primary-menu-desktop" class="nav-menu desktop-menu">
+                    <li><a href="index.html" class="active">صفحه اصلی</a></li>
+                    <li><a href="members.html">اعضا</a></li>
+                    <li><a href="news.html">اخبار</a></li>
+                    <li><a href="about.html">درباره ما</a></li>
+                    <li><a href="contact.html">تماس با ما</a></li>
+                </ul>
+            </nav>
+
+             <!-- Mobile Menu Overlay Container (Initially Hidden) -->
+             <div id="primary-menu-container" class="mobile-menu-overlay">
+                 <button class="close-menu-btn" aria-label="بستن منو">×</button>
+                 <form action="#" method="get" class="mobile-menu-search">
+                      <input type="search" placeholder="جستجو در سایت..." name="s-mobile">
+                      <button type="submit">جستجو</button>
+                  </form>
+                 <ul id="primary-menu-mobile" class="nav-menu mobile-menu-list">
+                     <li><a href="index.html">صفحه اصلی</a></li>
+                     <li><a href="members.html">اعضا</a></li>
+                     <li><a href="news.html">اخبار</a></li>
+                     <li><a href="about.html">درباره ما</a></li>
+                     <li><a href="contact.html">تماس با ما</a></li>
+                 </ul>
+             </div>
+
+
+            <!-- Date/Time Display (Desktop Only) -->
+            <div class="header-datetime">
+                <span id="current-date"></span> | <span id="current-time"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>به وب‌سایت رسمی اتحادیه لوازم خانگی پردیس خوش آمدید</h2>
+                <p>مرکز اطلاعات اعضا، اخبار و خدمات اتحادیه.</p>
+            </div>
+        </section>
+
+        <section id="top-members" class="home-section">
+            <div class="container">
+                <h2>اعضای برتر اتحادیه</h2>
+                <div class="member-grid">
+                    <!-- Member Card 1 -->
+                    <div class="member-card">
+                        <img src="assets/images/member-shop-01.jpg" alt="فروشگاه لوازم خانگی مدرن">
+                        <h3>فروشگاه لوازم خانگی مدرن</h3>
+                        <p class="member-owner">صاحب: آقای رضایی</p>
+                        <div class="rating">★★★★☆ <span class="rating-value">(4.5)</span></div>
+                        <a href="member-profile.html" class="btn btn-small">مشاهده پروفایل</a>
+                    </div>
+                    <!-- Member Card 2 -->
+                    <div class="member-card">
+                        <img src="assets/images/member-tech-01.jpg" alt="تعمیرات تخصصی البرز">
+                        <h3>تعمیرات تخصصی البرز</h3>
+                        <p class="member-owner">صاحب: خانم احمدی</p>
+                        <div class="rating">★★★★★ <span class="rating-value">(5.0)</span></div>
+                        <a href="member-profile.html" class="btn btn-small">مشاهده پروفایل</a>
+                    </div>
+                    <!-- Member Card 3 -->
+                    <div class="member-card">
+                        <img src="assets/images/member-abstract-01.png" alt="نصب و راه اندازی نوین">
+                        <h3>نصب و راه اندازی نوین</h3>
+                        <p class="member-owner">شرکت نوین سرویس</p>
+                        <div class="rating">★★★★☆ <span class="rating-value">(4.0)</span></div>
+                        <a href="member-profile.html" class="btn btn-small">مشاهده پروفایل</a>
+                    </div>
+                </div>
+                <div class="text-center">
+                     <a href="members.html" class="btn btn-secondary">مشاهده همه اعضا</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="latest-news" class="home-section alt-bg">
+            <div class="container">
+                <h2>آخرین اخبار و اطلاعیه‌ها</h2>
+                <div class="news-list-condensed">
+                    <!-- News Item 1 -->
+                    <article class="news-item-condensed has-image">
+                        <a href="news-single.html" class="news-item-image-link">
+                           <img src="assets/images/news-thumb-meeting.jpg" alt="اطلاعیه تعرفه‌ها">
+                        </a>
+                        <div class="news-item-content">
+                            <h3><a href="news-single.html">اطلاعیه جدید در مورد تعرفه‌های خدمات</a></h3>
+                            <p class="meta">۱ مرداد ۱۴۰۳</p>
+                            <p>جزئیات کامل تعرفه‌های جدید خدمات نصب و تعمیرات لوازم خانگی اعلام شد...</p>
+                            <a href="news-single.html" class="read-more">ادامه مطلب »</a>
+                        </div>
+                    </article>
+                    <!-- News Item 2 -->
+                    <article class="news-item-condensed has-image">
+                         <a href="news-single.html" class="news-item-image-link">
+                            <img src="assets/images/news-thumb-training.jpg" alt="دوره آموزشی">
+                         </a>
+                         <div class="news-item-content">
+                            <h3><a href="news-single.html">برگزاری دوره آموزشی تعمیرات یخچال</a></h3>
+                            <p class="meta">۲۵ تیر ۱۴۰۳</p>
+                            <p>دوره تخصصی تعمیرات یخچال‌های ساید بای ساید با همکاری مرکز فنی برگزار می‌گردد...</p>
+                            <a href="news-single.html" class="read-more">ادامه مطلب »</a>
+                        </div>
+                    </article>
+                    <!-- News Item 3 -->
+                    <article class="news-item-condensed has-image">
+                         <a href="news-single.html" class="news-item-image-link">
+                            <img src="assets/images/news-thumb-handshake.jpg" alt="تغییرات هیئت مدیره">
+                         </a>
+                         <div class="news-item-content">
+                            <h3><a href="news-single.html">تغییرات در هیئت مدیره اتحادیه</a></h3>
+                            <p class="meta">۱۵ تیر ۱۴۰۳</p>
+                            <p>اعضای جدید هیئت مدیره اتحادیه لوازم خانگی پردیس معرفی شدند...</p>
+                            <a href="news-single.html" class="read-more">ادامه مطلب »</a>
+                        </div>
+                    </article>
+                </div>
+                 <div class="text-center">
+                     <a href="news.html" class="btn btn-secondary">مشاهده همه اخبار</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <!-- Centered Footer Content -->
+        <div class="container footer-container">
+            <p>© ۱۴۰۳ - تمامی حقوق برای اتحادیه لوازم خانگی پردیس محفوظ است.</p>
+            <p class="footer-links"><a href="contact.html">تماس با ما</a> | <a href="about.html">درباره ما</a></p>
+            <p class="designer-credit">طراحی و توسعه توسط: <a href="https://your-rex-team-link.com" target="_blank" rel="noopener noreferrer">تیم رکس</a></p>
+        </div>
+    </footer>
+
+    <!-- Overlay div (Still needed for filter sidebar) -->
+    <div class="overlay"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
