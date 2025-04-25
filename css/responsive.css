@@ -1,0 +1,100 @@
+/* === Responsive Styles === */
+
+/* === Responsive Header Adjustments === */
+@media (min-width: 992px) {
+    .menu-toggle { display: none !important; }
+    .mobile-menu-overlay { display: none !important; }
+    .desktop-menu { display: flex; }
+    .header-datetime { display: block; }
+    .main-navigation { margin: 0 auto; flex-grow: 0; } /* Center nav */
+    .header-container { justify-content: space-between; }
+}
+
+@media (max-width: 991.98px) {
+    .desktop-menu { display: none; }
+    .menu-toggle { display: flex; }
+    .header-datetime { display: none; }
+    /* Mobile Header Layout: Logo Right, Toggle Left */
+    .header-container { justify-content: space-between; }
+    .logo { order: 1; flex-grow: 0; }
+    .main-navigation { order: 2; width: auto; flex-grow: 0; margin: 0; justify-content: flex-end; }
+    .menu-toggle { margin-left: 0; }
+}
+
+
+/* === Members Page Responsive === */
+@media (min-width: 992px) {
+    .members-page-layout {
+        grid-template-columns: minmax(0, 1fr) var(--sidebar-width-desktop); /* Content Left | Sidebar Right */
+        gap: calc(var(--spacing-unit) * 2.5);
+     }
+    .members-sidebar { grid-column: 2 / 3; grid-row: 1; } /* Sidebar second column */
+    .members-main-content { grid-column: 1 / 2; grid-row: 1; } /* Content first column */
+    .mobile-controls-wrapper { display: none; }
+}
+
+@media (max-width: 991.98px) {
+    .members-page-layout { grid-template-columns: 1fr; }
+    .members-sidebar {
+        position: fixed; top: 0;
+        right: -320px; /* Start offscreen right */
+        left: auto; /* Reset left */
+        width: 300px; max-width: 85%;
+        height: 100vh; overflow-y: auto; background-color: var(--white-color);
+        z-index: 1100; box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Shadow on left */
+        transition: transform 0.3s ease-in-out; visibility: hidden; transform: translateX(0);
+        padding: calc(var(--spacing-unit) * 1.5);
+        padding-top: calc(var(--spacing-unit) * 4);
+        border: none;
+        border-left: 1px solid var(--border-color); /* Border on left edge */
+    }
+    .members-sidebar.is-open {
+        transform: translateX(-320px); /* Slide in from right */
+        visibility: visible;
+    }
+    .close-filter-btn {
+        display: block; position: absolute; top: 15px;
+        left: 15px; /* Position remains left (relative to sidebar) */
+        background: transparent; border: none; font-size: 2.2rem;
+        line-height: 1; color: var(--text-muted); cursor: pointer; padding: 5px; z-index: 1101;
+    }
+    .close-filter-btn:hover { color: var(--dark-color); }
+    .members-sidebar h2 { margin-top: 0; text-align: right; font-size: 1.2rem; border-bottom: 1px solid var(--border-light-color); }
+    .member-controls .search-filter { display: none; }
+    .mobile-controls-wrapper { display: flex; }
+    .filter-toggle-btn { display: block; }
+}
+
+
+/* === News List/Single Page Responsive === */
+@media (min-width: 768px) {
+    .news-list-full .news-item-full { grid-template-columns: 200px 1fr; gap: calc(var(--spacing-unit) * 2); align-items: start; }
+    .news-thumbnail { height: 140px; }
+}
+
+/* === Contact Page Responsive === */
+@media (min-width: 992px) {
+    .contact-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: calc(var(--spacing-unit) * 4); }
+}
+
+/* === Member Profile Page Responsive === */
+@media (min-width: 992px) {
+     .profile-layout { grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr); gap: calc(var(--spacing-unit) * 3); }
+}
+
+/* === General Responsive Adjustments === */
+@media (max-width: 767.98px) {
+     .container { padding-left: var(--spacing-unit); padding-right: var(--spacing-unit); }
+     /* Header layout handled above */
+     h1 { font-size: 1.8rem; }
+     h2 { font-size: 1.5rem; }
+     h3 { font-size: 1.25rem; }
+     .members-page-layout { gap: calc(var(--spacing-unit) * 1.5); }
+     .profile-layout { gap: calc(var(--spacing-unit) * 1.5); }
+     .profile-main-content section, .profile-sidebar section { padding: calc(var(--spacing-unit) * 1.5); }
+}
+
+/* --- Shared Overlay for Mobile Filter Sidebar --- */
+/* (Style remains the same) */
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1080; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+.overlay.is-active { opacity: 1; visibility: visible; transition-delay: 0s; }

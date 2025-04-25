@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اخبار و اطلاعیه‌های اتحادیه - لوازم خانگی پردیس</title> <!-- Title Updated -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    <!-- Link to Separate CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+</head>
+<body class="page-news"> <!-- Added class for potential page-specific styling -->
+
+    <!-- === START: Updated Header === -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="لوگو اتحادیه لوازم خانگی پردیس"></a></div>
+            <nav class="main-navigation">
+                <button class="menu-toggle" aria-controls="primary-menu-container" aria-expanded="false"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <ul id="primary-menu-desktop" class="nav-menu desktop-menu">
+                    <li><a href="index.html">صفحه اصلی</a></li>
+                    <li><a href="members.html">اعضا</a></li>
+                    <li><a href="news.html" class="active">اخبار</a></li> <!-- Active class updated -->
+                    <li><a href="about.html">درباره ما</a></li>
+                    <li><a href="contact.html">تماس با ما</a></li>
+                </ul>
+            </nav>
+             <div id="primary-menu-container" class="mobile-menu-overlay">
+                 <button class="close-menu-btn" aria-label="بستن منو">×</button>
+                 <form action="#" method="get" class="mobile-menu-search"><input type="search" placeholder="جستجو در سایت..." name="s-mobile"><button type="submit">جستجو</button></form>
+                 <ul id="primary-menu-mobile" class="nav-menu mobile-menu-list">
+                     <li><a href="index.html">صفحه اصلی</a></li>
+                     <li><a href="members.html">اعضا</a></li>
+                     <li><a href="news.html">اخبار</a></li>
+                     <li><a href="about.html">درباره ما</a></li>
+                     <li><a href="contact.html">تماس با ما</a></li>
+                 </ul>
+             </div>
+            <div class="header-datetime"><span id="current-date"></span> | <span id="current-time"></span></div>
+        </div>
+    </header>
+    <!-- === END: Updated Header === -->
+
+    <main>
+        <div class="container page-container">
+            <h1>اخبار و اطلاعیه‌ها</h1>
+
+            <div class="news-list-full">
+                 <!-- News Item 1 (Most Recent) -->
+                 <article class="news-item-full">
+                    <a href="news-single.html" class="news-item-image-link"> <!-- Link the image -->
+                        <img src="assets/images/news-thumb-meeting.jpg" alt="تصویر خبر ۱" class="news-thumbnail">
+                    </a>
+                    <div class="news-content">
+                        <h2><a href="news-single.html">اطلاعیه جدید در مورد تعرفه‌های خدمات سال ۱۴۰۳</a></h2>
+                        <p class="meta">۱ مرداد ۱۴۰۳</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است...</p>
+                        <a href="news-single.html" class="read-more">ادامه مطلب »</a>
+                    </div>
+                </article>
+
+                 <!-- News Item 2 -->
+                 <article class="news-item-full">
+                     <a href="news-single.html" class="news-item-image-link">
+                        <img src="assets/images/news-thumb-training.jpg" alt="تصویر خبر ۲" class="news-thumbnail">
+                    </a>
+                     <div class="news-content">
+                        <h2><a href="news-single.html">برگزاری دوره آموزشی تعمیرات تخصصی یخچال‌های ساید بای ساید</a></h2>
+                        <p class="meta">۲۵ تیر ۱۴۰۳</p>
+                        <p>کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی...</p>
+                         <a href="news-single.html" class="read-more">ادامه مطلب »</a>
+                     </div>
+                 </article>
+
+                 <!-- News Item 3 -->
+                 <article class="news-item-full">
+                    <a href="news-single.html" class="news-item-image-link">
+                        <img src="assets/images/news-thumb-handshake.jpg" alt="تصویر خبر ۳" class="news-thumbnail">
+                    </a>
+                    <div class="news-content">
+                        <h2><a href="news-single.html">تغییرات اخیر در ترکیب هیئت مدیره اتحادیه</a></h2>
+                        <p class="meta">۱۵ تیر ۱۴۰۳</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است...</p>
+                        <a href="news-single.html" class="read-more">ادامه مطلب »</a>
+                    </div>
+                </article>
+
+                <!-- Add more news items as needed -->
+
+            </div>
+
+            <!-- Optional: Add Pagination if many news items -->
+            <!-- <nav class="pagination"> ... </nav> -->
+
+        </div>
+    </main>
+
+    <!-- === START: Updated Footer === -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <p>© ۱۴۰۳ - تمامی حقوق برای اتحادیه لوازم خانگی پردیس محفوظ است.</p>
+            <p class="footer-links"><a href="contact.html">تماس با ما</a> | <a href="about.html">درباره ما</a></p>
+            <p class="designer-credit">طراحی و توسعه توسط: <a href="https://your-rex-team-link.com" target="_blank" rel="noopener noreferrer">تیم رکس</a></p>
+        </div>
+    </footer>
+    <!-- === END: Updated Footer === -->
+
+    <!-- Overlay div -->
+    <div class="overlay"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

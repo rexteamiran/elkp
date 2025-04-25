@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>...</title> <!-- Title specific to the page -->
+        <!-- Add Vazirmatn Font -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    
+        <!-- Link to NEW CSS Files IN ORDER -->
+        <link rel="stylesheet" href="css/style.css">      <!-- Base, Layout, Components, Pages -->
+        <link rel="stylesheet" href="css/header.css">     <!-- Header Specific -->
+        <link rel="stylesheet" href="css/footer.css">     <!-- Footer Specific -->
+        <link rel="stylesheet" href="css/responsive.css"> <!-- All Media Queries -->
+    
+        <!-- Favicon -->
+        <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    </head>
+<body class="page-members">
+
+    <!-- === START: Updated Header (Copied from index.html) === -->
+    <header class="site-header">
+        <div class="container header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="لوگو اتحادیه لوازم خانگی پردیس">
+                 </a>
+            </div>
+
+            <!-- Desktop Navigation & Mobile Menu Trigger -->
+            <nav class="main-navigation">
+                <!-- Hamburger Button (Only visible on mobile) -->
+                <button class="menu-toggle" aria-controls="primary-menu-container" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Desktop Menu (Visible on desktop) -->
+                <ul id="primary-menu-desktop" class="nav-menu desktop-menu">
+                    <li><a href="index.html">صفحه اصلی</a></li>
+                    <li><a href="members.html" class="active">اعضا</a></li> <!-- Active class moved here -->
+                    <li><a href="news.html">اخبار</a></li>
+                    <li><a href="about.html">درباره ما</a></li>
+                    <li><a href="contact.html">تماس با ما</a></li>
+                </ul>
+            </nav>
+
+             <!-- Mobile Menu Overlay Container (Initially Hidden) -->
+             <div id="primary-menu-container" class="mobile-menu-overlay">
+                 <button class="close-menu-btn" aria-label="بستن منو">×</button>
+                 <form action="#" method="get" class="mobile-menu-search">
+                      <input type="search" placeholder="جستجو در سایت..." name="s-mobile">
+                      <button type="submit">جستجو</button>
+                  </form>
+                 <ul id="primary-menu-mobile" class="nav-menu mobile-menu-list">
+                     <li><a href="index.html">صفحه اصلی</a></li>
+                     <li><a href="members.html">اعضا</a></li> <!-- Consider adding .active here too if needed for mobile -->
+                     <li><a href="news.html">اخبار</a></li>
+                     <li><a href="about.html">درباره ما</a></li>
+                     <li><a href="contact.html">تماس با ما</a></li>
+                 </ul>
+             </div>
+
+            <!-- Date/Time Display (Desktop Only) -->
+            <div class="header-datetime">
+                <span id="current-date"></span> | <span id="current-time"></span>
+            </div>
+        </div>
+    </header>
+    <!-- === END: Updated Header === -->
+
+
+    <main>
+        <div class="container page-container">
+            <h1>اعضای اتحادیه</h1>
+
+            <div class="members-page-layout">
+
+                <!-- Main Content Area -->
+                <div class="members-main-content">
+
+                    <!-- Mobile Controls Wrapper -->
+                    <div class="mobile-controls-wrapper">
+                        <div class="mobile-search-bar">
+                             <label for="mobile-member-search" class="sr-only">جستجو در اعضا</label>
+                             <input type="search" id="mobile-member-search" placeholder="جستجو در نام اعضا...">
+                        </div>
+                        <button class="filter-toggle-btn" aria-controls="members-filter-sidebar" aria-expanded="false">
+                            فیلترها
+                        </button>
+                    </div>
+
+                    <div id="member-list" class="member-grid">
+                        <!-- Member cards ... (Keep the static examples as before) -->
+                        <div class="member-card" data-name="فروشگاه لوازم خانگی مدرن" data-category="Sales" data-experience="5-10" data-rating="4.5">
+                            <img src="assets/images/member-shop-01.jpg" alt="فروشگاه لوازم خانگی مدرن">
+                            <h3>فروشگاه لوازم خانگی مدرن</h3>
+                            <p class="member-owner">صاحب: آقای رضایی</p>
+                            <div class="rating">★★★★☆ <span class="rating-value">(4.5)</span></div>
+                            <a href="member-profile.html" class="btn btn-small">مشاهده پروفایل</a>
+                        </div>
+                         <div class="member-card" data-name="تعمیرات تخصصی البرز" data-category="Repair" data-experience="10+" data-rating="5">
+                            <img src="assets/images/member-tech-01.jpg" alt="تعمیرات تخصصی البرز">
+                            <h3>تعمیرات تخصصی البرز</h3>
+                            <p class="member-owner">صاحب: خانم احمدی</p>
+                            <div class="rating">★★★★★ <span class="rating-value">(5.0)</span></div>
+                            <a href="member-profile.html" class="btn btn-small">مشاهده پروفایل</a>
+                        </div>
+                        <div class="member-card" data-name="نصب و راه اندازی نوین" data-category="Installation" data-experience="1-5" data-rating="4">
+                            <img src="assets/images/member-abstract-01.png" alt="نصب و راه اندازی نوین">
+                            <h3>نصب و راه اندازی نوین</h3>
+                            <p class="member-owner">شرکت نوین سرویس</p>
+                            <div class="rating">★★★★☆ <span class="rating-value">(4.0)</span></div>
+                            <a href="member-profile.html" class="btn btn-small">مشاهده پروفایل</a>
+                        </div>
+                        <div class="member-card" data-name="خدمات فنی پایتخت" data-category="Repair" data-experience="5-10" data-rating="3.5">
+                             <img src="assets/images/member-shop-02.jpg" alt="خدمات فنی پایتخت">
+                             <h3>خدمات فنی پایتخت</h3>
+                             <p class="member-owner">صاحب: آقای محمدی</p>
+                             <div class="rating">★★★☆☆ <span class="rating-value">(3.5)</span></div>
+                             <a href="member-profile.html" class="btn btn-small">مشاهده پروفایل</a>
+                         </div>
+                         </div>
+                    <div id="no-results" class="no-results-message" style="display: none;">
+                        هیچ عضوی با این مشخصات یافت نشد.
+                    </div>
+                </div>
+
+                <!-- Sidebar for Filters/Sorting -->
+                <aside class="members-sidebar" id="members-filter-sidebar">
+                    <button class="close-filter-btn" aria-label="بستن فیلترها">×</button>
+                    <h2>فیلتر و مرتب‌سازی</h2>
+                    <div class="member-controls">
+                        <div class="filter-group search-filter">
+                            <label for="sidebar-member-search">جستجو در نام:</label>
+                            <input type="search" id="sidebar-member-search" placeholder="نام فروشگاه یا صاحب...">
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-category">دسته بندی:</label>
+                            <select id="filter-category">
+                                <option value="">همه</option>
+                                <option value="Sales">فروش</option>
+                                <option value="Repair">تعمیرات</option>
+                                <option value="Installation">نصب</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                             <label for="filter-experience">سابقه کار:</label>
+                             <select id="filter-experience">
+                                 <option value="">همه</option>
+                                 <option value="1-5">۱ تا ۵ سال</option>
+                                 <option value="5-10">۵ تا ۱۰ سال</option>
+                                 <option value="10+">بیش از ۱۰ سال</option>
+                             </select>
+                        </div>
+                         <div class="filter-group">
+                             <label for="filter-rating">امتیاز:</label>
+                             <select id="filter-rating">
+                                 <option value="">همه</option>
+                                 <option value="4">۴ ستاره و بالاتر</option>
+                                 <option value="3">۳ ستاره و بالاتر</option>
+                             </select>
+                         </div>
+                         <div class="filter-group sort-group">
+                            <label for="sort-by">مرتب سازی بر اساس:</label>
+                            <select id="sort-by">
+                                <option value="name-asc">نام (صعودی)</option>
+                                <option value="name-desc">نام (نزولی)</option>
+                                <option value="rating-desc">امتیاز (بیشترین)</option>
+                                <option value="rating-asc">امتیاز (کمترین)</option>
+                                 <option value="experience-desc">سابقه (بیشترین)</option>
+                                 <option value="experience-asc">سابقه (کمترین)</option>
+                            </select>
+                         </div>
+                         <button id="apply-filters" class="btn">اعمال فیلتر</button>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- === START: Updated Footer (Copied from index.html) === -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <p>© ۱۴۰۳ - تمامی حقوق برای اتحادیه لوازم خانگی پردیس محفوظ است.</p>
+            <p class="footer-links"><a href="contact.html">تماس با ما</a> | <a href="about.html">درباره ما</a></p>
+            <p class="designer-credit">طراحی و توسعه توسط: <a href="https://your-rex-team-link.com" target="_blank" rel="noopener noreferrer">تیم رکس</a></p>
+        </div>
+    </footer>
+    <!-- === END: Updated Footer === -->
+
+    <!-- Overlay div (Still needed for filter sidebar) -->
+    <div class="overlay"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

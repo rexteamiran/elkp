@@ -1,0 +1,247 @@
+/* === Header Specific Styles === */
+
+.site-header {
+    background-color: var(--white-color);
+    padding: 0; /* Padding handled by container */
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    box-shadow: var(--box-shadow-sm);
+}
+
+.header-container {
+    display: flex;
+    align-items: center; /* === Vertical Alignment === */
+    justify-content: space-between;
+    width: 100%;
+    gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.logo {
+    order: 1; /* Right in RTL */
+    flex-shrink: 0;
+}
+
+.logo img {
+    max-height: 45px; /* Adjusted logo size */
+    width: auto;
+    display: block; /* Ensure no extra space */
+}
+
+.main-navigation {
+    order: 2; /* Center */
+    flex-grow: 1; /* Allow nav container to grow */
+    display: flex;
+    justify-content: center; /* Center the menu UL inside */
+    position: relative; /* Needed for mobile menu positioning context */
+}
+
+.header-datetime {
+    order: 3; /* Left in RTL */
+    display: none; /* Hidden by default */
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 0.3rem 0;
+    margin-left: 0; /* Reset margin */
+    flex-shrink: 0;
+}
+
+.header-datetime span {
+    margin: 0 3px;
+}
+
+/* Desktop Navigation Styles */
+.desktop-menu {
+    display: none; /* Hidden by default, shown via media query */
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove margin */
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1.8); /* Adjusted gap */
+}
+
+.desktop-menu a {
+    display: block;
+    padding: 0.5rem 1rem; /* Increased padding for better spacing */
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius); /* Consistent radius */
+}
+
+.desktop-menu a:hover {
+    color: var(--primary-darker);
+    background-color: var(--light-bg);
+}
+
+.desktop-menu a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+    background-color: #e7f0f8; /* Light blue background for active */
+}
+
+.desktop-menu a::after {
+    display: none; /* No underline effect */
+}
+
+
+/* Hamburger Icon & Mobile Menu Trigger */
+.menu-toggle {
+    display: none; /* Hidden by default */
+    background: transparent;
+    color: var(--dark-color);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    width: 40px;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1101; /* Above overlay */
+    position: relative;
+}
+
+.menu-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2.5px;
+    background-color: var(--dark-color);
+    border-radius: 1px;
+    transition: var(--transition-base);
+    margin: 2.5px 0; /* Vertical spacing */
+}
+
+/* Removed transform for X animation */
+
+
+/* Wrapper for mobile menu needed for JS */
+.menu-container { }
+
+/* Mobile Menu - Full Screen Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 37, 41, 0.97); /* Dark overlay */
+    /* === HIGHEST Z-INDEX === */
+    z-index: 1099; /* Ensure it's above everything except its own close button */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-unit);
+    overflow-y: auto;
+}
+
+.mobile-menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s; /* Show immediately */
+}
+
+/* Close Button for Mobile Menu */
+.close-menu-btn {
+    position: absolute;
+    top: calc(var(--spacing-unit) * 1.5);
+    right: calc(var(--spacing-unit) * 1.5); /* Top Right */
+    background: transparent;
+    border: none;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1100; /* Above menu content */
+    transition: color 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    color: var(--white-color);
+}
+
+/* Mobile Menu Search Form */
+.mobile-menu-search {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: calc(var(--spacing-unit)*2.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.mobile-menu-search input[type="search"] {
+    flex-grow: 1;
+    border: none;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: transparent;
+    color: var(--white-color);
+}
+.mobile-menu-search input[type="search"]::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+.mobile-menu-search input[type="search"]:focus {
+    outline: none;
+    background-color: rgba(255,255,255,0.1);
+}
+.mobile-menu-search button {
+    background-color: var(--primary-lighter);
+    color: var(--dark-color);
+    border: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-weight: 500;
+}
+.mobile-menu-search button:hover {
+    background-color: var(--white-color);
+}
+
+/* Mobile Menu List */
+.mobile-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.mobile-menu-list li {
+    margin-bottom: calc(var(--spacing-unit)* 1.2);
+}
+
+.mobile-menu-list a {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.mobile-menu-list a:hover,
+.mobile-menu-list a.active {
+    color: var(--white-color);
+    letter-spacing: 1px;
+    font-weight: 500;
+}

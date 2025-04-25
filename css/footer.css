@@ -1,0 +1,56 @@
+/* === Footer Specific Styles === */
+
+.site-footer {
+    background-color: var(--dark-color);
+    color: #bdc3c7; /* Lighter gray text */
+    padding: 2.5rem 0;
+    margin-top: calc(var(--spacing-unit) * 4);
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: 4px solid var(--primary-color);
+}
+
+.footer-container {
+    text-align: center;
+}
+
+.footer-container p {
+    margin-bottom: 0.6rem;
+    color: #bdc3c7;
+    line-height: 1.7;
+}
+
+.footer-links a {
+    margin: 0 0.75rem;
+    color: #ecf0f1; /* Brighter links */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.designer-credit {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.designer-credit a {
+    color: #ecf0f1;
+    font-weight: 500;
+}
+
+.designer-credit a:hover {
+    color: white;
+}
+
+/* Keep centered on all screen sizes */
+@media (min-width: 768px) {
+    .footer-container { text-align: center; }
+    .footer-info, .designer-credit { text-align: center; margin-top: 0;}
+    .footer-info p, .designer-credit p { margin-bottom: 0.6rem; }
+}
