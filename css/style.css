@@ -23,7 +23,7 @@
     --border-light-color: #e9ecef; /* Lighter border */
 
     /* Typography */
-    --font-family-base: 'Vazirmatn', Tahoma, 'Helvetica Neue', Arial, sans-serif;
+    --font-family-base: farhang  !important;
     --font-size-base: 1rem;
     --line-height-base: 1.75; /* Generous line height */
 
@@ -41,9 +41,6 @@
 }
 
 /* Global Styles & Reset */
-* {
-	font-family: farhang  !important;
-}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family-base); border-width: 0; border-style: solid; border-color: var(--border-color); }
 html { font-size: 100%; scroll-behavior: smooth; direction: rtl; }
 body { font-size: var(--font-size-base); line-height: var(--line-height-base); color: var(--text-color); background-color: var(--background-color); text-align: right; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; position: relative; }
