@@ -1,5 +1,7 @@
 /* === Header Specific Styles === */
 
+@import url('./font.css');
+
 .site-header {
     background-color: var(--white-color);
     padding: 0; /* Padding handled by container */
