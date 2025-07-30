@@ -1,5 +1,7 @@
 /* === Responsive Styles === */
 
+@import url('./font.css');
+
 /* === Responsive Header Adjustments === */
 @media (min-width: 992px) {
     .menu-toggle { display: none !important; }
