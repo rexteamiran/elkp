@@ -1,5 +1,7 @@
 /* === Footer Specific Styles === */
 
+@import url('./font.css');
+
 .site-footer {
     background-color: var(--dark-color);
     color: #bdc3c7; /* Lighter gray text */
