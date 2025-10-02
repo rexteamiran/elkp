@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماشین‌حساب علمی پیشرفته</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🧮 ماشین‌حساب علمی</h1>
+            <div class="controls">
+                <button class="theme-toggle" id="themeToggle" title="تغییر تم">
+                    🌙
+                </button>
+                <button class="history-toggle" id="historyToggle" title="تاریخچه">
+                    📋
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Calculator -->
+            <div class="calculator">
+                <!-- Display -->
+                <div class="display-container">
+                    <div class="display-secondary" id="displaySecondary">0</div>
+                    <div class="display-primary" id="displayPrimary">0</div>
+                    <div class="memory-indicator" id="memoryIndicator">M</div>
+                </div>
+
+                <!-- Memory Functions -->
+                <div class="memory-buttons">
+                    <button class="btn btn-memory" data-action="MC">MC</button>
+                    <button class="btn btn-memory" data-action="MR">MR</button>
+                    <button class="btn btn-memory" data-action="M+">M+</button>
+                    <button class="btn btn-memory" data-action="M-">M-</button>
+                    <button class="btn btn-memory" data-action="MS">MS</button>
+                </div>
+
+                <!-- Scientific Functions -->
+                <div class="scientific-buttons">
+                    <button class="btn btn-function" data-function="sin">sin</button>
+                    <button class="btn btn-function" data-function="cos">cos</button>
+                    <button class="btn btn-function" data-function="tan">tan</button>
+                    <button class="btn btn-function" data-function="log">log</button>
+                    <button class="btn btn-function" data-function="ln">ln</button>
+                    <button class="btn btn-function" data-function="sqrt">√</button>
+                    <button class="btn btn-function" data-function="pow">x²</button>
+                    <button class="btn btn-function" data-function="exp">eˣ</button>
+                    <button class="btn btn-function" data-function="abs">|x|</button>
+                    <button class="btn btn-function" data-function="factorial">x!</button>
+                    <button class="btn btn-function" data-function="pi">π</button>
+                    <button class="btn btn-function" data-function="e">e</button>
+                </div>
+
+                <!-- Main Buttons -->
+                <div class="main-buttons">
+                    <button class="btn btn-operator" data-action="clear">C</button>
+                    <button class="btn btn-operator" data-action="delete">⌫</button>
+                    <button class="btn btn-operator" data-operator="^">^</button>
+                    <button class="btn btn-operator" data-operator="/">÷</button>
+
+                    <button class="btn btn-number" data-number="7">7</button>
+                    <button class="btn btn-number" data-number="8">8</button>
+                    <button class="btn btn-number" data-number="9">9</button>
+                    <button class="btn btn-operator" data-operator="*">×</button>
+
+                    <button class="btn btn-number" data-number="4">4</button>
+                    <button class="btn btn-number" data-number="5">5</button>
+                    <button class="btn btn-number" data-number="6">6</button>
+                    <button class="btn btn-operator" data-operator="-">−</button>
+
+                    <button class="btn btn-number" data-number="1">1</button>
+                    <button class="btn btn-number" data-number="2">2</button>
+                    <button class="btn btn-number" data-number="3">3</button>
+                    <button class="btn btn-operator" data-operator="+">+</button>
+
+                    <button class="btn btn-number" data-number="0">0</button>
+                    <button class="btn btn-number" data-number=".">.</button>
+                    <button class="btn btn-operator" data-action="negate">±</button>
+                    <button class="btn btn-equals" data-action="equals">=</button>
+                </div>
+            </div>
+
+            <!-- History Panel -->
+            <div class="history-panel" id="historyPanel">
+                <div class="history-header">
+                    <h3>📜 تاریخچه</h3>
+                    <button class="btn-clear-history" id="clearHistory">پاک کردن</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <p class="empty-history">تاریخچه‌ای وجود ندارد</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Toast -->
+        <div class="toast" id="toast"></div>
+
+        <!-- Keyboard Shortcuts Help -->
+        <div class="shortcuts-help">
+            <button class="shortcuts-toggle" id="shortcutsToggle">⌨️</button>
+            <div class="shortcuts-panel" id="shortcutsPanel">
+                <h4>میانبرهای صفحه‌کلید</h4>
+                <ul>
+                    <li><kbd>0-9</kbd> اعداد</li>
+                    <li><kbd>+ - * /</kbd> عملگرها</li>
+                    <li><kbd>Enter</kbd> محاسبه (=)</li>
+                    <li><kbd>Escape</kbd> پاک کردن (C)</li>
+                    <li><kbd>Backspace</kbd> حذف</li>
+                    <li><kbd>.</kbd> اعشار</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
