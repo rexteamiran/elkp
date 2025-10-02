@@ -3,120 +3,2917 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ماشین‌حساب علمی پیشرفته</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="فروشگاه آنلاین مدرن با بهترین محصولات و قیمت‌های مناسب">
+    <title>فروشگاه آنلاین مدرن | خرید آنلاین با بهترین قیمت</title>
+    
+    <!-- فونت فارسی Vazirmatn -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    
+    <!-- آیکون‌ها -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ========================================
+           🎨 متغیرهای CSS و تنظیمات اولیه
+        ======================================== */
+        :root {
+            /* رنگ‌های اصلی - Light Mode */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f5576c;
+            --success-color: #43e97b;
+            --warning-color: #ffd93d;
+            --danger-color: #ff6b6b;
+            
+            /* رنگ‌های متن */
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            
+            /* پس‌زمینه */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            
+            /* سایه‌ها */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            
+            /* فاصله‌ها */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #cbd5e0;
+            
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+            --bg-tertiary: #4a5568;
+            
+            --glass-bg: rgba(45, 55, 72, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* ========================================
+           📐 Reset و تنظیمات پایه
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-fast);
+        }
+        
+        button {
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        /* ========================================
+           🎬 Loading Screen
+        ======================================== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--primary-gradient);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            margin-top: var(--spacing-md);
+            font-weight: 600;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ========================================
+           🎯 Header و Navigation
+        ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all var(--transition-normal);
+        }
+        
+        .header.scrolled {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .header-top {
+            background: var(--primary-gradient);
+            color: white;
+            padding: var(--spacing-xs) 0;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        .header-main {
+            padding: var(--spacing-md) 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-lg);
+        }
+        
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+        
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            padding: var(--spacing-xs) 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width var(--transition-normal);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            padding-left: 3rem;
+            border: 2px solid var(--bg-tertiary);
+            border-radius: var(--radius-full);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: var(--transition-normal);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+        
+        .icon-btn {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-full);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            transition: var(--transition-normal);
+        }
+        
+        .icon-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .theme-toggle {
+            background: var(--bg-secondary);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition-normal);
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* ========================================
+           🎪 Hero Section با اسلایدر
+        ======================================== */
+        .hero {
+            margin-top: 120px;
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+        }
+        
+        .hero-slider {
+            position: relative;
+            height: 100%;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.8) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+            animation: slideInRight 0.8s ease;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            opacity: 0.9;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .btn-outline {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--spacing-sm);
+            z-index: 3;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .dot.active {
+            background: white;
+            width: 32px;
+            border-radius: var(--radius-full);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* ========================================
+           📦 دسته‌بندی محصولات
+        ======================================== */
+        .section {
+            padding: var(--spacing-2xl) 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .section-subtitle {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .section-description {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .category-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: var(--transition-normal);
+            z-index: 0;
+        }
+        
+        .category-card:hover::before {
+            opacity: 1;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .category-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            background: var(--primary-gradient);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            transition: var(--transition-normal);
+        }
+        
+        .category-card:hover .category-icon {
+            transform: rotateY(360deg) scale(1.1);
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .category-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+            transition: var(--transition-normal);
+        }
+        
+        .category-card:hover .category-name {
+            color: white;
+        }
+        
+        .category-count {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: var(--transition-normal);
+        }
+        
+        .category-card:hover .category-count {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* ========================================
+           ⭐ محصولات ویژه
+        ======================================== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .product-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-normal);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .product-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+            aspect-ratio: 1;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            z-index: 2;
+        }
+        
+        .badge-new {
+            background: var(--success-gradient);
+        }
+        
+        .badge-sale {
+            background: var(--secondary-gradient);
+        }
+        
+        .product-actions {
+            position: absolute;
+            top: var(--spacing-sm);
+            left: var(--spacing-sm);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: var(--transition-normal);
+        }
+        
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: var(--spacing-md);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .stars {
+            display: flex;
+            gap: 2px;
+            color: var(--warning-color);
+        }
+        
+        .rating-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .price-current {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .price-original {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        
+        .price-discount {
+            margin-right: auto;
+            background: var(--danger-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: var(--spacing-sm);
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-xs);
+            transition: var(--transition-normal);
+        }
+        
+        .add-to-cart:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .view-more {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+        
+        /* ========================================
+           🎯 بنر تبلیغاتی
+        ======================================== */
+        .promo-banner {
+            position: relative;
+            height: 400px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary-gradient);
+        }
+        
+        .promo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+        
+        .promo-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+        
+        .promo-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .promo-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.95;
+        }
+        
+        .countdown {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+            min-width: 100px;
+        }
+        
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: var(--spacing-xs);
+        }
+        
+        /* ========================================
+           🔥 محصولات پرفروش (Carousel)
+        ======================================== */
+        .carousel-container {
+            position: relative;
+        }
+        
+        .carousel-wrapper {
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+        }
+        
+        .carousel-track {
+            display: flex;
+            gap: var(--spacing-md);
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            flex: 0 0 calc(25% - var(--spacing-md));
+            min-width: 0;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            z-index: 10;
+            transition: var(--transition-normal);
+        }
+        
+        .carousel-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-btn.prev {
+            right: -25px;
+        }
+        
+        .carousel-btn.next {
+            left: -25px;
+        }
+        
+        /* ========================================
+           💎 ویژگی‌های فروشگاه
+        ======================================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: var(--transition-slow);
+            transform: rotate(45deg);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            background: var(--primary-gradient);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xs);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-description {
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        /* ========================================
+           💬 نظرات مشتریان
+        ======================================== */
+        .testimonials-slider {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .testimonial-card.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-full);
+            border: 4px solid white;
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+        }
+        
+        .testimonial-info h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .testimonial-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-rating {
+            margin-right: auto;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+            position: relative;
+            padding: var(--spacing-md);
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 0;
+            font-size: 5rem;
+            color: var(--primary-color);
+            opacity: 0.2;
+            font-family: serif;
+        }
+        
+        /* ========================================
+           📄 Footer
+        ======================================== */
+        .footer {
+            background: var(--bg-secondary);
+            padding-top: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .footer-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .footer-link {
+            color: var(--text-secondary);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .footer-link:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .newsletter-btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: var(--transition-normal);
+        }
+        
+        .social-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .badge-img {
+            height: 50px;
+            opacity: 0.7;
+            transition: var(--transition-fast);
+            filter: grayscale(100%);
+        }
+        
+        .badge-img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--bg-tertiary);
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        
+        .footer-bottom p {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        /* ========================================
+           🍞 Toast Notification
+        ======================================== */
+        .toast {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            left: var(--spacing-lg);
+            background: white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            transform: translateY(200px);
+            opacity: 0;
+            transition: var(--transition-normal);
+            z-index: 9999;
+            max-width: 400px;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .toast-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .toast.success .toast-icon {
+            background: var(--success-gradient);
+        }
+        
+        .toast.error .toast-icon {
+            background: var(--danger-color);
+        }
+        
+        .toast-content h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .toast-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .toast-close {
+            margin-right: auto;
+            width: 24px;
+            height: 24px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+        
+        /* ========================================
+           🎨 Scroll Reveal Animation
+        ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ========================================
+           📱 Responsive Design
+        ======================================== */
+        
+        @media (max-width: 1200px) {
+            .carousel-item {
+                flex: 0 0 calc(33.333% - var(--spacing-md));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: var(--spacing-2xl) var(--spacing-lg);
+                box-shadow: var(--shadow-xl);
+                transition: right var(--transition-normal);
+                z-index: 1001;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .search-box {
+                max-width: 300px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .carousel-item {
+                flex: 0 0 calc(50% - var(--spacing-md));
+            }
+            
+            .promo-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                height: 500px;
+                margin-top: 100px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: var(--spacing-md);
+            }
+            
+            .carousel-item {
+                flex: 0 0 calc(100% - var(--spacing-md));
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .countdown {
+                gap: var(--spacing-sm);
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            
+            .countdown-value {
+                font-size: 2rem;
+            }
+            
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .toast {
+                left: var(--spacing-sm);
+                right: var(--spacing-sm);
+                bottom: var(--spacing-sm);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-icons {
+                gap: var(--spacing-xs);
+            }
+            
+            .icon-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            
+            .search-box {
+                display: none;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1>🧮 ماشین‌حساب علمی</h1>
-            <div class="controls">
-                <button class="theme-toggle" id="themeToggle" title="تغییر تم">
-                    🌙
-                </button>
-                <button class="history-toggle" id="historyToggle" title="تاریخچه">
-                    📋
-                </button>
-            </div>
-        </header>
-
-        <div class="main-content">
-            <!-- Calculator -->
-            <div class="calculator">
-                <!-- Display -->
-                <div class="display-container">
-                    <div class="display-secondary" id="displaySecondary">0</div>
-                    <div class="display-primary" id="displayPrimary">0</div>
-                    <div class="memory-indicator" id="memoryIndicator">M</div>
-                </div>
-
-                <!-- Memory Functions -->
-                <div class="memory-buttons">
-                    <button class="btn btn-memory" data-action="MC">MC</button>
-                    <button class="btn btn-memory" data-action="MR">MR</button>
-                    <button class="btn btn-memory" data-action="M+">M+</button>
-                    <button class="btn btn-memory" data-action="M-">M-</button>
-                    <button class="btn btn-memory" data-action="MS">MS</button>
-                </div>
-
-                <!-- Scientific Functions -->
-                <div class="scientific-buttons">
-                    <button class="btn btn-function" data-function="sin">sin</button>
-                    <button class="btn btn-function" data-function="cos">cos</button>
-                    <button class="btn btn-function" data-function="tan">tan</button>
-                    <button class="btn btn-function" data-function="log">log</button>
-                    <button class="btn btn-function" data-function="ln">ln</button>
-                    <button class="btn btn-function" data-function="sqrt">√</button>
-                    <button class="btn btn-function" data-function="pow">x²</button>
-                    <button class="btn btn-function" data-function="exp">eˣ</button>
-                    <button class="btn btn-function" data-function="abs">|x|</button>
-                    <button class="btn btn-function" data-function="factorial">x!</button>
-                    <button class="btn btn-function" data-function="pi">π</button>
-                    <button class="btn btn-function" data-function="e">e</button>
-                </div>
-
-                <!-- Main Buttons -->
-                <div class="main-buttons">
-                    <button class="btn btn-operator" data-action="clear">C</button>
-                    <button class="btn btn-operator" data-action="delete">⌫</button>
-                    <button class="btn btn-operator" data-operator="^">^</button>
-                    <button class="btn btn-operator" data-operator="/">÷</button>
-
-                    <button class="btn btn-number" data-number="7">7</button>
-                    <button class="btn btn-number" data-number="8">8</button>
-                    <button class="btn btn-number" data-number="9">9</button>
-                    <button class="btn btn-operator" data-operator="*">×</button>
-
-                    <button class="btn btn-number" data-number="4">4</button>
-                    <button class="btn btn-number" data-number="5">5</button>
-                    <button class="btn btn-number" data-number="6">6</button>
-                    <button class="btn btn-operator" data-operator="-">−</button>
-
-                    <button class="btn btn-number" data-number="1">1</button>
-                    <button class="btn btn-number" data-number="2">2</button>
-                    <button class="btn btn-number" data-number="3">3</button>
-                    <button class="btn btn-operator" data-operator="+">+</button>
-
-                    <button class="btn btn-number" data-number="0">0</button>
-                    <button class="btn btn-number" data-number=".">.</button>
-                    <button class="btn btn-operator" data-action="negate">±</button>
-                    <button class="btn btn-equals" data-action="equals">=</button>
-                </div>
-            </div>
-
-            <!-- History Panel -->
-            <div class="history-panel" id="historyPanel">
-                <div class="history-header">
-                    <h3>📜 تاریخچه</h3>
-                    <button class="btn-clear-history" id="clearHistory">پاک کردن</button>
-                </div>
-                <div class="history-list" id="historyList">
-                    <p class="empty-history">تاریخچه‌ای وجود ندارد</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Error Toast -->
-        <div class="toast" id="toast"></div>
-
-        <!-- Keyboard Shortcuts Help -->
-        <div class="shortcuts-help">
-            <button class="shortcuts-toggle" id="shortcutsToggle">⌨️</button>
-            <div class="shortcuts-panel" id="shortcutsPanel">
-                <h4>میانبرهای صفحه‌کلید</h4>
-                <ul>
-                    <li><kbd>0-9</kbd> اعداد</li>
-                    <li><kbd>+ - * /</kbd> عملگرها</li>
-                    <li><kbd>Enter</kbd> محاسبه (=)</li>
-                    <li><kbd>Escape</kbd> پاک کردن (C)</li>
-                    <li><kbd>Backspace</kbd> حذف</li>
-                    <li><kbd>.</kbd> اعشار</li>
-                </ul>
-            </div>
-        </div>
+    
+    <!-- ========================================
+         🎬 صفحه لودینگ
+    ======================================== -->
+    <div class="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">در حال بارگذاری...</div>
     </div>
-
-    <script src="script.js"></script>
+    
+    <!-- ========================================
+         🎯 Header
+    ======================================== -->
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="container">
+                🎉 تخفیف ویژه! ارسال رایگان برای خریدهای بالای 500 هزار تومان
+            </div>
+        </div>
+        
+        <div class="header-main">
+            <div class="container">
+                <nav class="nav-wrapper">
+                    <!-- لوگو -->
+                    <a href="#" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>فروشگاه مدرن</span>
+                    </a>
+                    
+                    <!-- منوی ناوبری -->
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#" class="nav-link active">خانه</a></li>
+                        <li><a href="#products" class="nav-link">محصولات</a></li>
+                        <li><a href="#categories" class="nav-link">دسته‌بندی‌ها</a></li>
+                        <li><a href="#testimonials" class="nav-link">نظرات</a></li>
+                        <li><a href="#footer" class="nav-link">تماس با ما</a></li>
+                    </ul>
+                    
+                    <!-- جستجو -->
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="جستجوی محصولات...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- آیکون‌ها -->
+                    <div class="nav-icons">
+                        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="تغییر تم">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="icon-btn" aria-label="علاقه‌مندی‌ها">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="icon-btn" id="cartBtn" aria-label="سبد خرید">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge" id="cartBadge">0</span>
+                        </button>
+                        <button class="icon-btn" aria-label="حساب کاربری">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        
+                        <!-- منوی همبرگری -->
+                        <div class="hamburger" id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- ========================================
+         🎪 Hero Section با اسلایدر
+    ======================================== -->
+    <section class="hero">
+        <div class="hero-slider">
+            <!-- اسلاید 1 -->
+            <div class="hero-slide active">
+                <img src="https://picsum.photos/1920/600?random=1" alt="Hero 1" class="hero-bg">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">کلکسیون جدید بهار</p>
+                        <h1 class="hero-title">با سبک خود، متفاوت باشید</h1>
+                        <p class="hero-description">
+                            جدیدترین و شیک‌ترین محصولات فصل را با تخفیف‌های ویژه تجربه کنید
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary">
+                                <span>خرید کنید</span>
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-outline">
+                                <span>مشاهده کلکسیون</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- اسلاید 2 -->
+            <div class="hero-slide">
+                <img src="https://picsum.photos/1920/600?random=2" alt="Hero 2" class="hero-bg">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">فروش ویژه</p>
+                        <h1 class="hero-title">تخفیف تا 70 درصد</h1>
+                        <p class="hero-description">
+                            فرصت استثنایی برای خرید محصولات برند با قیمت‌های باورنکردنی
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary">
+                                <span>مشاهده تخفیف‌ها</span>
+                                <i class="fas fa-fire"></i>
+                            </button>
+                            <button class="btn btn-outline">
+                                <span>اطلاعات بیشتر</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- اسلاید 3 -->
+            <div class="hero-slide">
+                <img src="https://picsum.photos/1920/600?random=3" alt="Hero 3" class="hero-bg">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">ارسال رایگان</p>
+                        <h1 class="hero-title">خرید آسان و امن</h1>
+                        <p class="hero-description">
+                            با اطمینان خرید کنید، ارسال سریع و رایگان برای تمام سفارش‌ها
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary">
+                                <span>شروع خرید</span>
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button class="btn btn-outline">
+                                <span>درباره ما</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dots Navigation -->
+        <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         📦 دسته‌بندی محصولات
+    ======================================== -->
+    <section class="section" id="categories">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-subtitle">دسته‌بندی‌ها</p>
+                <h2 class="section-title">خرید بر اساس دسته</h2>
+                <p class="section-description">
+                    محصولات متنوع در دسته‌بندی‌های مختلف برای انتخاب آسان‌تر شما
+                </p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="category-name">موبایل و تبلت</h3>
+                    <p class="category-count">124 محصول</p>
+                </div>
+                
+                <div class="category-card reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="category-name">لپ‌تاپ</h3>
+                    <p class="category-count">89 محصول</p>
+                </div>
+                
+                <div class="category-card reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3 class="category-name">لوازم جانبی</h3>
+                    <p class="category-count">256 محصول</p>
+                </div>
+                
+                <div class="category-card reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="category-name">دوربین</h3>
+                    <p class="category-count">67 محصول</p>
+                </div>
+                
+                <div class="category-card reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3 class="category-name">تلویزیون</h3>
+                    <p class="category-count">45 محصول</p>
+                </div>
+                
+                <div class="category-card reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="category-name">گیمینگ</h3>
+                    <p class="category-count">178 محصول</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         ⭐ محصولات ویژه
+    ======================================== -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-subtitle">پیشنهاد ویژه</p>
+                <h2 class="section-title">محصولات ویژه</h2>
+                <p class="section-description">
+                    منتخب بهترین محصولات با کیفیت برتر و قیمت مناسب
+                </p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- محصول 1 -->
+                <div class="product-card reveal">
+                    <div class="product-image-wrapper">
+                        <img src="https://picsum.photos/400/400?random=10" alt="محصول 1" class="product-image" loading="lazy">
+                        <span class="product-badge badge-new">جدید</span>
+                        <div class="product-actions">
+                            <button class="action-btn" aria-label="مشاهده سریع">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="action-btn" aria-label="مقایسه">
+                                <i class="fas fa-exchange-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">گوشی موبایل سامسونگ مدل Galaxy S23 Ultra</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(128 نظر)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">45,990,000 تومان</span>
+                            <span class="price-original">52,000,000 تومان</span>
+                            <span class="price-discount">12%</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('گوشی سامسونگ S23 Ultra', 45990000)">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>افزودن به سبد</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- محصول 2 -->
+                <div class="product-card reveal">
+                    <div class="product-image-wrapper">
+                        <img src="https://picsum.photos/400/400?random=11" alt="محصول 2" class="product-image" loading="lazy">
+                        <span class="product-badge badge-sale">فروش ویژه</span>
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">لپ‌تاپ 15 اینچی ایسوس مدل VivoBook Pro</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-count">(89 نظر)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">32,500,000 تومان</span>
+                            <span class="price-original">38,000,000 تومان</span>
+                            <span class="price-discount">14%</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('لپ‌تاپ ایسوس VivoBook', 32500000)">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>افزودن به سبد</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- محصول 3 -->
+                <div class="product-card reveal">
+                    <div class="product-image-wrapper">
+                        <img src="https://picsum.photos/400/400?random=12" alt="محصول 3" class="product-image" loading="lazy">
+                        <span class="product-badge badge-new">جدید</span>
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">هدفون بی‌سیم سونی مدل WH-1000XM5</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(256 نظر)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">12,990,000 تومان</span>
+                            <span class="price-original">15,500,000 تومان</span>
+                            <span class="price-discount">16%</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('هدفون سونی WH-1000XM5', 12990000)">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>افزودن به سبد</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- محصول 4 -->
+                <div class="product-card reveal">
+                    <div class="product-image-wrapper">
+                        <img src="https://picsum.photos/400/400?random=13" alt="محصول 4" class="product-image" loading="lazy">
+                        <span class="product-badge badge-sale">فروش ویژه</span>
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ساعت هوشمند اپل واچ سری 8</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(342 نظر)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">18,500,000 تومان</span>
+                            <span class="price-original">22,000,000 تومان</span>
+                            <span class="price-discount">16%</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('اپل واچ سری 8', 18500000)">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>افزودن به سبد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-more reveal">
+                <button class="btn btn-primary">
+                    <span>مشاهده همه محصولات</span>
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         🎯 بنر تبلیغاتی
+    ======================================== -->
+    <section class="section">
+        <div class="container">
+            <div class="promo-banner reveal">
+                <img src="https://picsum.photos/1920/400?random=20" alt="Promo" class="promo-bg">
+                <div class="promo-content">
+                    <h2 class="promo-title">⚡ فروش ویژه آخر هفته</h2>
+                    <p class="promo-subtitle">تخفیف شگفت‌انگیز تا 60 درصد</p>
+                    
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="days">00</span>
+                            <span class="countdown-label">روز</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="hours">00</span>
+                            <span class="countdown-label">ساعت</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="minutes">00</span>
+                            <span class="countdown-label">دقیقه</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="seconds">00</span>
+                            <span class="countdown-label">ثانیه</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary">
+                        <span>خرید کنید</span>
+                        <i class="fas fa-bolt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         🔥 محصولات پرفروش
+    ======================================== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-subtitle">پرفروش‌ترین‌ها</p>
+                <h2 class="section-title">محصولات پرفروش</h2>
+                <p class="section-description">
+                    محبوب‌ترین محصولات انتخاب شده توسط مشتریان ما
+                </p>
+            </div>
+            
+            <div class="carousel-container reveal">
+                <button class="carousel-btn prev" id="carouselPrev" aria-label="قبلی">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="carousel-btn next" id="carouselNext" aria-label="بعدی">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- محصول Carousel 1 -->
+                        <div class="carousel-item">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img src="https://picsum.photos/400/400?random=30" alt="محصول" class="product-image" loading="lazy">
+                                    <span class="product-badge badge-sale">تخفیف</span>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">تبلت سامسونگ Tab S8</h3>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="rating-count">(67)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price-current">24,900,000</span>
+                                    </div>
+                                    <button class="add-to-cart" onclick="addToCart('تبلت سامسونگ Tab S8', 24900000)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>افزودن به سبد</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- محصول Carousel 2-6 (مشابه) -->
+                        <div class="carousel-item">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img src="https://picsum.photos/400/400?random=31" alt="محصول" class="product-image" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">کیبورد مکانیکی Razer</h3>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count">(145)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price-current">5,900,000</span>
+                                    </div>
+                                    <button class="add-to-cart" onclick="addToCart('کیبورد Razer', 5900000)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>افزودن به سبد</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img src="https://picsum.photos/400/400?random=32" alt="محصول" class="product-image" loading="lazy">
+                                    <span class="product-badge badge-new">جدید</span>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">موس گیمینگ Logitech</h3>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="rating-count">(234)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price-current">3,200,000</span>
+                                    </div>
+                                    <button class="add-to-cart" onclick="addToCart('موس Logitech', 3200000)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>افزودن به سبد</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img src="https://picsum.photos/400/400?random=33" alt="محصول" class="product-image" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">مانیتور 27 اینچ LG</h3>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="rating-count">(98)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price-current">15,500,000</span>
+                                    </div>
+                                    <button class="add-to-cart" onclick="addToCart('مانیتور LG', 15500000)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>افزودن به سبد</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img src="https://picsum.photos/400/400?random=34" alt="محصول" class="product-image" loading="lazy">
+                                    <span class="product-badge badge-sale">تخفیف</span>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">دسته بازی PS5</h3>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count">(512)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price-current">4,200,000</span>
+                                    </div>
+                                    <button class="add-to-cart" onclick="addToCart('دسته PS5', 4200000)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>افزودن به سبد</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img src="https://picsum.photos/400/400?random=35" alt="محصول" class="product-image" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">پاوربانک 20000 شیائومی</h3>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="rating-count">(890)</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price-current">1,250,000</span>
+                                    </div>
+                                    <button class="add-to-cart" onclick="addToCart('پاوربانک شیائومی', 1250000)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>افزودن به سبد</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         💎 ویژگی‌های فروشگاه
+    ======================================== -->
+    <section class="section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="feature-title">ارسال رایگان</h3>
+                    <p class="feature-description">برای خریدهای بالای 500 هزار تومان ارسال رایگان</p>
+                    <div class="stats-counter" data-target="1200">0</div>
+                    <p class="feature-description">ارسال موفق امروز</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">پشتیبانی 24/7</h3>
+                    <p class="feature-description">همیشه در کنار شما برای پاسخ به سوالات</p>
+                    <div class="stats-counter" data-target="50000">0</div>
+                    <p class="feature-description">مشتری راضی</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3 class="feature-title">ضمانت بازگشت</h3>
+                    <p class="feature-description">30 روز ضمانت بازگشت کالا بدون قید و شرط</p>
+                    <div class="stats-counter" data-target="99">0</div>
+                    <p class="feature-description">درصد رضایت</p>
+                </div>
+                
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">پرداخت امن</h3>
+                    <p class="feature-description">پرداخت با معتبرترین درگاه‌های بانکی</p>
+                    <div class="stats-counter" data-target="100">0</div>
+                    <p class="feature-description">درصد امنیت</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         💬 نظرات مشتریان
+    ======================================== -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-subtitle">نظرات</p>
+                <h2 class="section-title">مشتریان ما چه می‌گویند</h2>
+                <p class="section-description">
+                    تجربه واقعی مشتریان از خرید و خدمات ما
+                </p>
+            </div>
+            
+            <div class="testimonials-slider reveal">
+                <!-- نظر 1 -->
+                <div class="testimonial-card active">
+                    <div class="testimonial-header">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Customer" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>محمد رضایی</h4>
+                            <p class="testimonial-date">2 روز پیش</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        تجربه خرید از این فروشگاه واقعاً عالی بود. محصولات با کیفیت، ارسال سریع و پشتیبانی فوق‌العاده. حتماً دوباره خرید می‌کنم.
+                    </p>
+                </div>
+                
+                <!-- نظر 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://i.pravatar.cc/150?img=5" alt="Customer" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>زهرا احمدی</h4>
+                            <p class="testimonial-date">5 روز پیش</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        از تنوع محصولات و قیمت‌های مناسب بسیار راضی هستم. سایت کاربرپسند و فرآیند خرید بسیار ساده است. پیشنهاد می‌کنم.
+                    </p>
+                </div>
+                
+                <!-- نظر 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Customer" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>علی کریمی</h4>
+                            <p class="testimonial-date">1 هفته پیش</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        بهترین فروشگاه آنلاینی که تا به حال از اون خرید کردم. کیفیت محصولات عالی و قیمت‌ها رقابتی. مخصوصاً تخفیف‌هاش خیلی جذابه!
+                    </p>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="slider-dots" style="position: relative; margin-top: 2rem;">
+                    <span class="dot active" onclick="showTestimonial(0)"></span>
+                    <span class="dot" onclick="showTestimonial(1)"></span>
+                    <span class="dot" onclick="showTestimonial(2)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========================================
+         📄 Footer
+    ======================================== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-main">
+                <!-- درباره ما -->
+                <div class="footer-section">
+                    <h3>درباره فروشگاه</h3>
+                    <p>
+                        ما بزرگ‌ترین فروشگاه آنلاین کشور هستیم که با ارائه محصولات باکیفیت و خدمات عالی، رضایت شما را تضمین می‌کنیم.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn" aria-label="اینستاگرام">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-btn" aria-label="تلگرام">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-btn" aria-label="توییتر">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-btn" aria-label="لینکدین">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- لینک‌های مفید -->
+                <div class="footer-section">
+                    <h3>لینک‌های مفید</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">
+                            <i class="fas fa-chevron-left"></i>
+                            درباره ما
+                        </a>
+                        <a href="#" class="footer-link">
+                            <i class="fas fa-chevron-left"></i>
+                            تماس با ما
+                        </a>
+                        <a href="#" class="footer-link">
+                            <i class="fas fa-chevron-left"></i>
+                            قوانین و مقررات
+                        </a>
+                        <a href="#" class="footer-link">
+                            <i class="fas fa-chevron-left"></i>
+                            حریم خصوصی
+                        </a>
+                        <a href="#" class="footer-link">
+                            <i class="fas fa-chevron-left"></i>
+                            سوالات متداول
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- تماس با ما -->
+                <div class="footer-section">
+                    <h3>تماس با ما</h3>
+                    <div class="footer-links">
+                        <a href="tel:02188888888" class="footer-link">
+                            <i class="fas fa-phone"></i>
+                            021-88888888
+                        </a>
+                        <a href="mailto:info@shop.com" class="footer-link">
+                            <i class="fas fa-envelope"></i>
+                            info@shop.com
+                        </a>
+                        <a href="#" class="footer-link">
+                            <i class="fas fa-map-marker-alt"></i>
+                            تهران، خیابان ولیعصر
+                        </a>
+                        <a href="#" class="footer-link">
+                            <i class="fas fa-clock"></i>
+                            شنبه تا پنجشنبه 9-18
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- خبرنامه -->
+                <div class="footer-section">
+                    <h3>عضویت در خبرنامه</h3>
+                    <p>از جدیدترین تخفیف‌ها و اخبار باخبر شوید</p>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" class="newsletter-input" placeholder="ایمیل شما" required>
+                        <button type="submit" class="newsletter-btn">عضویت</button>
+                    </form>
+                    <div class="trust-badges">
+                        <img src="https://trustseal.enamad.ir/logo.aspx?id=1&Code=placeholder" alt="نماد اعتماد" class="badge-img">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 فروشگاه مدرن. تمامی حقوق محفوظ است.</p>
+                <p>طراحی شده با ❤️ برای تجربه خرید بهتر</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ========================================
+         🍞 Toast Notification
+    ======================================== -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="toast-content">
+            <h4 id="toastTitle">موفق</h4>
+            <p id="toastMessage">عملیات با موفقیت انجام شد</p>
+        </div>
+        <button class="toast-close" onclick="hideToast()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <!-- ========================================
+         📜 JavaScript
+    ======================================== -->
+    <script>
+        // ========================================
+        // 🎬 Loading Screen
+        // ========================================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-screen').classList.add('hidden');
+            }, 1500);
+        });
+        
+        // ========================================
+        // 🎯 Header Scroll Effect
+        // ========================================
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // ========================================
+        // 🍔 Mobile Menu Toggle
+        // ========================================
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // بستن منو با کلیک روی لینک‌ها
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // ========================================
+        // 🌓 Dark Mode Toggle
+        // ========================================
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // اعمال تم ذخیره شده
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+        
+        // ========================================
+        // 🎪 Hero Slider
+        // ========================================
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dots .dot');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function startSlider() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopSlider() {
+            clearInterval(slideInterval);
+        }
+        
+        // Dots navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                stopSlider();
+                startSlider();
+            });
+        });
+        
+        startSlider();
+        
+        // ========================================
+        // ⏰ Countdown Timer
+        // ========================================
+        function updateCountdown() {
+            // تاریخ پایان: 3 روز از الان
+            const endDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+            
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown').innerHTML = '<h3>فروش ویژه به پایان رسید!</h3>';
+                }
+            }, 1000);
+        }
+        
+        updateCountdown();
+        
+        // ========================================
+        // 🎠 Product Carousel
+        // ========================================
+        const carouselTrack = document.getElementById('carouselTrack');
+        const carouselPrev = document.getElementById('carouselPrev');
+        const carouselNext = document.getElementById('carouselNext');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        
+        let carouselIndex = 0;
+        let itemsToShow = 4;
+        
+        function updateItemsToShow() {
+            if (window.innerWidth <= 768) {
+                itemsToShow = 1;
+            } else if (window.innerWidth <= 992) {
+                itemsToShow = 2;
+            } else if (window.innerWidth <= 1200) {
+                itemsToShow = 3;
+            } else {
+                itemsToShow = 4;
+            }
+        }
+        
+        function updateCarousel() {
+            const itemWidth = carouselItems[0].offsetWidth;
+            const gap = 16; // spacing-md
+            const offset = -(carouselIndex * (itemWidth + gap));
+            carouselTrack.style.transform = `translateX(${offset}px)`;
+        }
+        
+        carouselNext.addEventListener('click', () => {
+            if (carouselIndex < carouselItems.length - itemsToShow) {
+                carouselIndex++;
+                updateCarousel();
+            }
+        });
+        
+        carouselPrev.addEventListener('click', () => {
+            if (carouselIndex > 0) {
+                carouselIndex--;
+                updateCarousel();
+            }
+        });
+        
+        // Auto-play carousel
+        let carouselInterval = setInterval(() => {
+            if (carouselIndex < carouselItems.length - itemsToShow) {
+                carouselIndex++;
+            } else {
+                carouselIndex = 0;
+            }
+            updateCarousel();
+        }, 3000);
+        
+        // توقف auto-play با hover
+        carouselTrack.addEventListener('mouseenter', () => {
+            clearInterval(carouselInterval);
+        });
+        
+        carouselTrack.addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(() => {
+                if (carouselIndex < carouselItems.length - itemsToShow) {
+                    carouselIndex++;
+                } else {
+                    carouselIndex = 0;
+                }
+                updateCarousel();
+            }, 3000);
+        });
+        
+        window.addEventListener('resize', () => {
+            updateItemsToShow();
+            carouselIndex = 0;
+            updateCarousel();
+        });
+        
+        updateItemsToShow();
+        
+        // ========================================
+        // 📊 Counter Animation
+        // ========================================
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString('fa-IR');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString('fa-IR');
+                }
+            }, 16);
+        }
+        
+        // ========================================
+        // 👁️ Scroll Reveal Animation
+        // ========================================
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                    
+                    // اجرای counter animation
+                    const counter = element.querySelector('.stats-counter');
+                    if (counter && !counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        animateCounter(counter);
+                    }
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        reveal(); // اجرای اولیه
+        
+        // ========================================
+        // 💬 Testimonials Slider
+        // ========================================
+        let testimonialIndex = 0;
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        const testimonialDots = document.querySelectorAll('.testimonials-slider .dot');
+        
+        function showTestimonial(n) {
+            testimonials.forEach(card => card.classList.remove('active'));
+            testimonialDots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonialIndex = n;
+            testimonials[testimonialIndex].classList.add('active');
+            testimonialDots[testimonialIndex].classList.add('active');
+        }
+        
+        // Auto-play testimonials
+        setInterval(() => {
+            testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+            showTestimonial(testimonialIndex);
+        }, 5000);
+        
+        // ========================================
+        // 🛒 Add to Cart
+        // ========================================
+        let cartCount = 0;
+        
+        function addToCart(productName, price) {
+            cartCount++;
+            document.getElementById('cartBadge').textContent = cartCount;
+            
+            // ذخیره در localStorage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            showToast('success', 'افزودن به سبد خرید', `${productName} به سبد خرید اضافه شد`);
+            
+            // انیمیشن سبد خرید
+            const cartBtn = document.getElementById('cartBtn');
+            cartBtn.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartBtn.style.transform = 'scale(1)';
+            }, 300);
+        }
+        
+        // بارگذاری تعداد سبد خرید از localStorage
+        window.addEventListener('load', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cartCount = cart.length;
+            document.getElementById('cartBadge').textContent = cartCount;
+        });
+        
+        // ========================================
+        // 🍞 Toast Notification
+        // ========================================
+        function showToast(type, title, message) {
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toast.className = `toast ${type}`;
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                hideToast();
+            }, 3000);
+        }
+        
+        function hideToast() {
+            document.getElementById('toast').classList.remove('show');
+        }
+        
+        // ========================================
+        // 📧 Newsletter Subscription
+        // ========================================
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            
+            // ذخیره در localStorage
+            const subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
+            if (!subscribers.includes(email)) {
+                subscribers.push(email);
+                localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                showToast('success', 'عضویت موفق', 'شما با موفقیت در خبرنامه عضو شدید');
+                e.target.reset();
+            } else {
+                showToast('error', 'خطا', 'این ایمیل قبلاً ثبت شده است');
+            }
+        }
+        
+        // ========================================
+        // 🔍 Search Functionality
+        // ========================================
+        const searchInput = document.querySelector('.search-input');
+        
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (searchTerm.length > 2) {
+                // در اینجا می‌توانید منطق جستجو را پیاده‌سازی کنید
+                console.log('جستجو برای:', searchTerm);
+            }
+        });
+        
+        // ========================================
+        // 💫 Smooth Scroll
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // ========================================
+        // 🖼️ Lazy Loading Images
+        // ========================================
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.src; // تریگر بارگذاری
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            imageObserver.observe(img);
+        });
+        
+        // ========================================
+        // ❤️ Favorite/Wishlist
+        // ========================================
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            if (btn.querySelector('.fa-heart')) {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        this.style.color = '#ff6b6b';
+                        showToast('success', 'افزوده شد', 'به لیست علاقه‌مندی‌ها اضافه شد');
+                        
+                        // انیمیشن قلب
+                        this.style.transform = 'scale(1.3)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 300);
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        this.style.color = '';
+                        showToast('success', 'حذف شد', 'از لیست علاقه‌مندی‌ها حذف شد');
+                    }
+                });
+            }
+        });
+        
+        // ========================================
+        // 🎨 Parallax Effect (ملایم)
+        // ========================================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-bg');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+        
+        // ========================================
+        // 🎯 Active Nav Link on Scroll
+        // ========================================
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // ========================================
+        // 📱 Responsive Adjustments
+        // ========================================
+        function handleResize() {
+            updateItemsToShow();
+            
+            // بستن منوی موبایل در صورت بزرگ شدن صفحه
+            if (window.innerWidth > 992) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        }
+        
+        window.addEventListener('resize', handleResize);
+        
+        // ========================================
+        // 🎊 Welcome Animation
+        // ========================================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showToast('success', 'خوش آمدید! 👋', 'به فروشگاه مدرن خوش آمدید');
+            }, 2000);
+        });
+        
+        // ========================================
+        // 🛡️ Console Message
+        // ========================================
+        console.log('%c🛍️ فروشگاه مدرن', 'font-size: 24px; font-weight: bold; color: #667eea;');
+        console.log('%cطراحی شده با ❤️ برای بهترین تجربه کاربری', 'font-size: 14px; color: #718096;');
+        
+    </script>
+    
 </body>
 </html>
